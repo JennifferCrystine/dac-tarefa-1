@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.RequestDispatcher;
+import java.time.LocalTime;
 
 /**
  *
@@ -59,7 +59,6 @@ public class HelloServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         String msg = "";
         
         String lang = request.getParameter("lang");
@@ -110,13 +109,78 @@ public class HelloServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException {    
+        
+        int hora = horaDoDia(LocalTime.now());      
+        
+        
         String msg = "";
         
         String lang = request.getParameter("lang");
         if(lang==null)
             lang = "pt";
-        switch(lang){
+        
+        if (hora == 0 && lang.equals("pt")) {
+            msg = "Bom dia, ";
+        }
+        else if (hora == 1 && lang.equals("pt")) {
+            msg = "Boa tarde, ";
+        }
+        else if (hora == 2 && lang.equals("pt")) {
+            msg = "Boa noite, ";
+        }
+        
+        else if (hora == 0 && lang.equals("en")) {
+            msg = "Good morning, ";
+        }
+        else if (hora == 1 && lang.equals("en")) {
+            msg = "Good afternoon, ";
+        }
+        else if (hora == 2 && lang.equals("en")) {
+            msg = "Good night, ";
+        }
+        
+        else if (hora == 0 && lang.equals("de")) {
+            msg = "Guten morgen, ";
+        }
+        else if (hora == 1 && lang.equals("de")) {
+            msg = "Guten tag, ";
+        }
+        else if (hora == 2 && lang.equals("de")) {
+            msg = "Guten nacht, ";
+        }
+        
+        else if (hora == 0 && lang.equals("ita")) {
+            msg = "Buongiorno, ";
+        }
+        else if (hora == 1 && lang.equals("ita")) {
+            msg = "Buon pomeriggio, ";
+        }
+        else if (hora == 2 && lang.equals("ita")) {
+            msg = "Buona notte, ";
+        }
+        
+        else if (hora == 0 && lang.equals("es")) {
+            msg = "Buenos días, ";
+        }
+        else if (hora == 1 && lang.equals("es")) {
+            msg = "Buenas tardes, ";
+        }
+        else if (hora == 2 && lang.equals("es")) {
+            msg = "Buenas noches, ";
+        }        
+        
+        else if (hora == 0 && lang.equals("fr")) {
+            msg = "Bonjour, ";
+        }
+        else if (hora == 1 && lang.equals("fr")) {
+            msg = "Bon après-midi, ";
+        }
+        else if (hora == 2 && lang.equals("fr")) {
+            msg = "Bonne nuit, ";
+        }
+        
+        /*switch(lang){
             case "pt":
                 msg = "Alô, ";
                 break;
@@ -129,7 +193,14 @@ public class HelloServlet extends HttpServlet {
             case "de":
                 msg = "Hallo, ";
                 break;
+            case "ita":
+                msg = "Ciao, ";
+                break;
+            case "es":
+                msg = "¡Hola, ";
+                break;
         }
+        */
         
         String nome = request.getParameter("nome");
 
@@ -151,6 +222,19 @@ public class HelloServlet extends HttpServlet {
             out.println("<p>" + msg + "</p>");
             out.println("</body>");
             out.println("</html>");
+        }
+    }
+    
+    private int horaDoDia(LocalTime hora) {
+        LocalTime noite = LocalTime.of(18, 0, 0, 0); 
+        if (hora.isBefore(LocalTime.NOON) && hora.isAfter(LocalTime.MIDNIGHT)) {
+            return 0;
+        }        
+        else if (hora.isAfter(LocalTime.NOON) && hora.isBefore(noite)) {
+            return 1;
+        }
+        else {
+            return 2;
         }
     }
 
