@@ -10,24 +10,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>SayHello.jsp</title>
+        <title>Say Hello</title>
     </head>
     <body>
-        <h1>SayHello.jsp</h1>
-        <% String lang = request.getParameter("lang"); %>
-        
+        <h1>Say Hello</h1>        
         <div>Formulário de HelloWorld (usando o sayhello.jsp)</div>
-           <form action="/alomundo" method="post">
-           <br>Idioma: <input type="radio" name="lang" value="pt" checked> Português
-           <input type="radio" name="lang" value="en"> Inglês
-           <input type="radio" name="lang" value="fr"> Francês
-           <input type="radio" name="lang" value="de"> Alemão
-           <input type="radio" name="lang" value="ita"> Italiano
-           <input type="radio" name="lang" value="es"> Espanhol<br><br>
-           Nome: <input type="text" name="nome"/><br><br>
-           <input type="submit" value="Cumprimentar"/>
-        </form>
-    
-    
+        <form action="/alomundo" method="post">
+             <br>Idioma: <input type="radio" name="lang" value="pt" checked> Português
+             <input type="radio" name="lang" value="en"> Inglês
+             <input type="radio" name="lang" value="fr"> Francês
+             <input type="radio" name="lang" value="de"> Alemão
+             <input type="radio" name="lang" value="ita"> Italiano
+             <input type="radio" name="lang" value="es"> Espanhol<br><br>
+             Nome: <input type="text" name="nome"/><br><br>
+             <input type="submit" value="Cumprimentar"/>
+         </form>    
     </body>
 </html>
